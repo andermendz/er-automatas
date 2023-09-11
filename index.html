@@ -6,9 +6,19 @@
 </head>
 <body class="p-10">
     <h1 class="text-3xl mb-4">Validador de Declaraciones de Variables</h1>
-    <textarea id="code" class="form-control w-full h-64 p-2 border rounded mb-4"></textarea>
+    <textarea id="code" class="form-control w-full h-32 p-2 border rounded mb-4"></textarea>
     <button id="validate" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded">Validar</button>
-    <ul id="results" class="mt-4"></ul>
+
+    <div class="flex mt-4">
+        <div class="w-1/2 pr-2">
+            <h2 class="text-2xl mb-4">Resultados de Validación</h2>
+            <ul id="results" class="overflow-auto"></ul>
+        </div>
+        <div class="w-1/2 pl-2">
+            <h2 class="text-2xl mb-4">Variables Asignadas</h2>
+            <ul id="variables" class="overflow-auto"></ul>
+        </div>
+    </div>
 
     <script>
       // Cuando se hace clic en el botón de validar
@@ -23,8 +33,15 @@
           var results = document.getElementById('results');
           results.innerHTML = '';
 
+          // Limpiar las variables anteriores
+          var variables = document.getElementById('variables');
+          variables.innerHTML = '';
+
           // Definir la expresión regular para validar las líneas
-          var regex = /^declare\s+([a-zA-Z_][a-zA-Z0-9_]{0,14}(,[a-zA-Z_][a-zA-Z0-9_]{0,14})*\s+)(entero|real|cadena|lógico|fecha);$/;
+          var regex = /^declare\s+([a-zA-Z_][a-zA-Z0-9_]{0,14}(,[a-zA-Z_][a-zA-Z0-9_]{0,14})*\s+)(entero|real|cadena|logico|fecha);$/;
+
+          // Crear un objeto para almacenar las variables declaradas
+          var declaredVars = {};
 
           // Para cada línea del código
           lines.forEach(function(line, i) {
@@ -35,24 +52,63 @@
               var li = document.createElement('li');
               li.classList.add('list-group-item', 'p-2', 'mb-2', 'rounded');
 
-              // Si la línea es válida según la expresión regular
-              if (regex.test(line)) {
-                  // Marcar como válida y agregar a los resultados
-                  li.classList.add('bg-green-200');
-                  li.textContent = 'Línea ' + (i + 1) + ': Válido';
-              } else {
-                  // Si no es válida, marcar como inválida y agregar la razón del error
-                  li.classList.add('bg-red-200');
-                  li.textContent = 'Línea ' + (i + 1) + ': Inválido - ';
-                  if (!line.startsWith('declare')) {
-                      li.textContent += 'La línea no comienza con "declare".';
-                  } else if (!line.endsWith(';')) {
-                      li.textContent += 'La línea no termina con ";".';
-                  } else if (!/(entero|real|cadena|lógico|fecha)/.test(line)) {
-                      li.textContent += 'Tipo de dato inválido.';
-                  } else {
-                      li.textContent += 'Identificador de variable inválido.';
+              // Crear una lista de errores
+              var errors = [];
+
+              // Si la línea no comienza con "declare", agregar un error
+              if (!line.startsWith('declare')) {
+                  errors.push('La línea no comienza con "declare".');
+              }
+
+              // Si la línea no termina con ";", agregar un error
+              if (!line.endsWith(';')) {
+                  errors.push('La línea no termina con ";".');
+              }
+
+              // Si el tipo de dato es inválido, agregar un error
+              if (!/(entero|real|cadena|lógico|fecha)/.test(line)) {
+                  errors.push('Tipo de dato inválido.');
+              }
+
+              // Si la línea es válida según la expresión regular y no hay errores hasta ahora
+              if (regex.test(line) && errors.length === 0) {
+                  // Extraer las variables y el tipo de dato de la línea
+                  var match = line.match(regex);
+                  var vars = match[1].split(',');
+                  var type = match[3];
+
+                  // Verificar si alguna variable ya ha sido declarada
+                  vars.forEach(function(v) {
+                      v = v.trim();
+                      if (declaredVars[v]) {
+                          errors.push('Variable "' + v + '" duplicada.');
+                      } else {
+                          declaredVars[v] = type;
+                      }
+                  });
+
+                  if (errors.length === 0) {
+                      // Si no hay errores, marcar como válida y agregar a los resultados
+                      li.classList.add('bg-green-200');
+                      li.textContent = 'Línea ' + (i + 1) + ': Válido';
+
+                      // Agregar las variables a la lista de variables
+                      vars.forEach(function(v) {
+                          var liVar = document.createElement('li');
+                          liVar.classList.add('list-group-item', 'p-2', 'mb-2', 'rounded', 'bg-blue-200');
+                          liVar.textContent = v.trim() + ': ' + type;
+                          variables.appendChild(liVar);
+                      });
                   }
+              } else {
+                  // Si el identificador de variable es inválido, agregar un error
+                  errors.push('Identificador de variable inválido.');
+              }
+
+              // Si hay errores, marcar como inválida y agregar los errores
+              if (errors.length > 0) {
+                  li.classList.add('bg-red-200');
+                  li.textContent = 'Línea ' + (i + 1) + ': Inválido - ' + errors.join(' ');
               }
 
               // Agregar el resultado a la lista de resultados
