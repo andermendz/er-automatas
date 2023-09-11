@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validador de Declaraciones de Variables</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="p-10">
+    <h1 class="text-3xl mb-4">Validador de Declaraciones de Variables</h1>
+    <textarea id="code" class="form-control w-full h-64 p-2 border rounded mb-4"></textarea>
+    <button id="validate" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded">Validar</button>
+    <ul id="results" class="mt-4"></ul>
+
+    <script>
+      // Cuando se hace clic en el botón de validar
+      document.getElementById('validate').addEventListener('click', function() {
+          // Obtener el código del área de texto
+          var code = document.getElementById('code').value;
+
+          // Dividir el código en líneas
+          var lines = code.split('\n');
+
+          // Limpiar los resultados anteriores
+          var results = document.getElementById('results');
+          results.innerHTML = '';
+
+          // Definir la expresión regular para validar las líneas
+          var regex = /^declare\s+([a-zA-Z_][a-zA-Z0-9_]{0,14}(,[a-zA-Z_][a-zA-Z0-9_]{0,14})*\s+)(entero|real|cadena|lógico|fecha);$/;
+
+          // Para cada línea del código
+          lines.forEach(function(line, i) {
+              // Si la línea está vacía, ignorarla
+              if (line.trim() === '') return;
+
+              // Crear un elemento de lista para mostrar el resultado
+              var li = document.createElement('li');
+              li.classList.add('list-group-item', 'p-2', 'mb-2', 'rounded');
+
+              // Si la línea es válida según la expresión regular
+              if (regex.test(line)) {
+                  // Marcar como válida y agregar a los resultados
+                  li.classList.add('bg-green-200');
+                  li.textContent = 'Línea ' + (i + 1) + ': Válido';
+              } else {
+                  // Si no es válida, marcar como inválida y agregar la razón del error
+                  li.classList.add('bg-red-200');
+                  li.textContent = 'Línea ' + (i + 1) + ': Inválido - ';
+                  if (!line.startsWith('declare')) {
+                      li.textContent += 'La línea no comienza con "declare".';
+                  } else if (!line.endsWith(';')) {
+                      li.textContent += 'La línea no termina con ";".';
+                  } else if (!/(entero|real|cadena|lógico|fecha)/.test(line)) {
+                      li.textContent += 'Tipo de dato inválido.';
+                  } else {
+                      li.textContent += 'Identificador de variable inválido.';
+                  }
+              }
+
+              // Agregar el resultado a la lista de resultados
+              results.appendChild(li);
+          });
+      });
+  </script>
+</body>
+</html>
