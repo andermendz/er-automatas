@@ -11,7 +11,7 @@
                 counter-reset: line;
                 user-select: none;
                 padding-right: 5px;
-                line-height: 1.5rem; /* Ajusta esto según el tamaño de línea de tu textarea */
+                line-height: 1.5rem; 
             }
             .line-numbers .lines div::before {
                 counter-increment: line;
@@ -22,11 +22,11 @@
             textarea {
                 overflow: hidden;
                 resize: none;
-                line-height: 1.5rem; /* Asegúrate de que esto coincida con el line-height del div de las líneas */
+                line-height: 1.5rem; 
             }
             /* Añade transiciones a los elementos de la lista */
             #results li, #variables li {
-                transition: all 0.3s ease-in-out;
+                transition: all 0.5s ease-in-out;
                 opacity: 0;
             }
         </style>
@@ -158,7 +158,7 @@
             
                 // Agregar el resultado a la lista de resultados
                 results.appendChild(li);
-                setTimeout(function() {li.style.opacity = 1;}, 100); // Añade transición de opacidad
+                setTimeout(function() {li.style.opacity = 1;}, 300); // Añade transición de opacidad
             });
             });
             
