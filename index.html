@@ -88,8 +88,10 @@ document.getElementById('validate').addEventListener('click', function() {
 
     // Definir la expresión regular para validar las líneas
     // '^declare\s+' busca líneas que comiencen con "declare" seguido de uno o más espacios.
+    // '\s+' representa uno o más espacios en blanco.
     // '([a-zA-Z_][a-zA-Z0-9_]{0,14}' define una variable que debe comenzar con una letra o un guion bajo, seguido de hasta 14 letras, números o guiones bajos.
     // '(,\s*[a-zA-Z_][a-zA-Z0-9_]{0,14})*\s+' permite múltiples variables en la declaración. El patrón puede repetirse cero o más veces, lo que permite una cantidad ilimitada de variables.
+    // '*' significa "cero o más".
     // '(entero|real|cadena|logico|fecha)' busca uno de los tipos de datos permitidos: entero, real, cadena, logico o fecha.
     // ';$' asegura que la línea termine con un punto y coma.
     var regex = /^declare\s+([a-zA-Z_][a-zA-Z0-9_]{0,14}(,\s*[a-zA-Z_][a-zA-Z0-9_]{0,14})*\s+)(entero|real|cadena|logico|fecha);$/;
@@ -173,6 +175,6 @@ document.getElementById('validate').addEventListener('click', function() {
 });
 </script>
 
-            </script>
+
 </body>
 </html>
