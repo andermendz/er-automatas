@@ -1,0 +1,26 @@
+.line-numbers {
+  display: flex;
+}
+.line-numbers .lines {
+  counter-reset: line;
+  user-select: none;
+  padding-right: 5px;
+  line-height: 1.5rem;
+}
+.line-numbers .lines div::before {
+  counter-increment: line;
+  content: counter(line);
+  display: block;
+  text-align: right;
+}
+textarea {
+  overflow: hidden;
+  resize: none;
+  line-height: 1.5rem;
+}
+/* Añade transiciones a los elementos de la lista */
+#results li,
+#variables li {
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+}
