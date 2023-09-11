@@ -1,45 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Validador de Declaraciones de Variables</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./script.js"></script>
-  </head>
-  <body class="p-10">
+    <script src="./script.js" defer></script>
+</head>
+
+<body class="p-10">
+
     <h1 class="text-3xl mb-4">Validador de Declaraciones de Variables</h1>
     <div class="line-numbers">
-      <div class="lines"></div>
-      <textarea
-        id="code"
-        class="form-control w-full h-32 border rounded mb-4"
-      ></textarea>
+        <div class="lines"></div>
+        <textarea id="code" class="form-control w-full h-32 border rounded mb-4"></textarea>
     </div>
-    <button
-      id="validate"
-      class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded"
-    >
-      Validar
+    <button id="validate" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded">
+        Validar
     </button>
 
     <div class="flex mt-4">
-      <div class="w-1/2 pr-2">
-        <h2 class="text-2xl mb-4">Resultados de Validación</h2>
-        <ul
-          id="results"
-          class="overflow-auto transition-all duration-100 ease-in-out"
-        ></ul>
-      </div>
-      <div class="w-1/2 pl-2">
-        <h2 class="text-2xl mb-4">Variables Declaradas</h2>
-        <ul
-          id="variables"
-          class="overflow-auto transition-all duration-100 ease-in-out"
-        ></ul>
-      </div>
+        <div class="w-1/2 pr-2">
+            <h2 class="text-2xl mb-4">Resultados de Validación</h2>
+            <ul id="results" class="overflow-auto transition-all duration-100 ease-in-out"></ul>
+        </div>
+        <div class="w-1/2 pl-2">
+            <h2 class="text-2xl mb-4">Variables Declaradas</h2>
+            <ul id="variables" class="overflow-auto transition-all duration-100 ease-in-out"></ul>
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
