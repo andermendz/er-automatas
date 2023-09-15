@@ -1,3 +1,13 @@
+// Sintarix
+const codeElement = document.getElementById('code');
+codeElement.addEventListener('input', () => {
+    const code = codeElement.value;
+    const highlightedCode = Prism.highlight(code, Prism.languages.javascript, 'javascript');
+    codeElement.innerHTML = highlightedCode;
+});
+
+
+
 // Obtener el área de texto y el div de las líneas
 var code = document.getElementById("code");
 var lines = document.querySelector(".lines");
@@ -48,6 +58,8 @@ document.getElementById("validate").addEventListener("click", function () {
     // Crear un elemento de lista para mostrar el resultado
     var li = document.createElement("li");
     li.classList.add("list-group-item", "p-2", "mb-2", "rounded");
+    li.style.opacity = "0";
+    li.style.transition = "opacity .5s ease-in-out";
 
     // Crear una lista de errores
     var errors = [];
@@ -100,11 +112,13 @@ document.getElementById("validate").addEventListener("click", function () {
             "bg-blue-200"
           );
           liVar.textContent = v.trim() + ": " + type;
-          liVar.dataset.type = type; // Añadir el tipo de dato como un atributo de datos
+          liVar.dataset.type = type; 
+          liVar.style.opacity = "0";
+          liVar.style.transition = "opacity .5s ease-in-out";
           variables.appendChild(liVar);
           setTimeout(function () {
-            liVar.style.opacity = 1;
-          }, 100); // Añade transición de opacidad
+            liVar.style.opacity = "1";
+          }, 100); 
         });
       }
     } else {
@@ -121,11 +135,11 @@ document.getElementById("validate").addEventListener("click", function () {
     // Agregar el resultado a la lista de resultados
     results.appendChild(li);
     setTimeout(function () {
-      li.style.opacity = 1;
-    }, 300); // Añade transición de opacidad
+      li.style.opacity = "1";
+    }, 300); 
 
     // Mostrar los botones del filtro después de que se inserte el input
-    document.getElementById("filter").style.opacity = 1;
+    document.getElementById("filter").style.opacity = "1";
   });
 });
 
@@ -148,7 +162,7 @@ document.querySelectorAll("#filter button").forEach(function (button) {
 
     // Para cada variable declarada
     vars.forEach(function (v) {
-      v.style.opacity = 0; 
+      v.style.opacity = "0"; 
       
       setTimeout(function () { 
         // Si el filtro está vacío o coincide con el tipo de dato, mostrar la variable
@@ -158,11 +172,11 @@ document.querySelectorAll("#filter button").forEach(function (button) {
           // De lo contrario, ocultar la variable
           v.style.display = "none";
         }
-      }, 300); // Añade transición de opacidad
+      }, 300); 
 
       setTimeout(function () {
-        v.style.opacity = 1;
-      }, 600); // Añade transición de opacidad
+        v.style.opacity = "1";
+      }, 600); 
     });
   });
 });

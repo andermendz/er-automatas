@@ -3,44 +3,49 @@
 
 <head>
     <title>Validador de Declaraciones de Variables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./script.js" defer></script>
 </head>
 
-<body class="p-10">
+<body>
 
-    <h1 class="text-3xl mb-4">Validador de Declaraciones de Variables</h1>
-    <div class="line-numbers">
-        <div class="lines"></div>
-        <textarea id="code" class="form-control w-full h-32 border rounded mb-4"></textarea>
-    </div>
-    <button id="validate" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded">
-        Validar
-    </button>
+    <div class="gradient-background"></div>
 
-    <div class="flex mt-4">
-        <div class="w-1/2 pr-2">
-            <h2 class="text-2xl mb-4">Resultados de Validación</h2>
-            <ul id="results" class="overflow-auto transition-all duration-100 ease-in-out"></ul>
+    <div class="container mx-auto bg-white rounded-lg p-4 max-w-lg m-auto">
+        <h1 class="text-3xl mb-4 text-center">Validador de Declaraciones de Variables</h1>
+        <div class="line-numbers">
+            <div class="lines"></div>
+            <textarea id="code" class="form-control w-full h-32 border rounded mb-4"></textarea>
         </div>
-        <div class="w-1/2 pl-2">
-            <h2 class="text-2xl mb-4">Variables Declaradas</h2>
-            <!-- Añadir botones para filtrar las variables -->
-            <div id="filter" class="mb-4 flex space-x-4 opacity-0 transition-opacity duration-500">
-                <button data-filter="" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded">Todos los tipos</button>
-                <button data-filter="entero" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Entero</button>
-                <button data-filter="real" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Real</button>
-                <button data-filter="cadena" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Cadena</button>
-                <button data-filter="logico" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Lógico</button>
-                <button data-filter="fecha" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Fecha</button>
+        <button id="validate" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded block m-auto">
+            Validar
+        </button>
+
+        <div class="flex flex-col md:flex-row mt-4">
+            <div class="mb-2 md:w-1/2 pr-2">
+                <h2 class="text-2xl mb-4 text-center">Resultados de Validación</h2>
+                <ul id="results" class="overflow-auto transition-all duration-100 ease-in-out"></ul>
             </div>
-            <!-- Fin de los botones -->
-            <ul id="variables" class="overflow-auto transition-all duration-100 ease-in-out"></ul>
+            <div class="md:w-1/2 pl-2">
+                <h2 class="text-2xl mb-4 text-center">Variables Declaradas</h2>
+                <!-- Añadir botones para filtrar las variables -->
+                <div id="filter" class="mb-4 flex space-x-4 opacity-0 transition-opacity duration-500 justify-center flex-wrap">
+                    <button data-filter="" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded mb-2">Todos los tipos</button>
+                    <button data-filter="entero" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded mb-2">Entero</button>
+                    <button data-filter="real" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded mb-2">Real</button>
+                    <button data-filter="cadena" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded mb-2">Cadena</button>
+                    <button data-filter="logico" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded mb-2">Lógico</button>
+                    <button data-filter="fecha" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded mb-2">Fecha</button>
+                </div>
+                <!-- Fin de los botones -->
+                <ul id="variables" class="overflow-auto transition-all duration-100 ease-in-out"></ul>
+            </div>
         </div>
+
     </div>
 
-<script src="./script.js"></script>
+<script src="./script.js" defer></script>
 
 </body>
 
