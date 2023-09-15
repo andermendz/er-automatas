@@ -26,9 +26,22 @@
         </div>
         <div class="w-1/2 pl-2">
             <h2 class="text-2xl mb-4">Variables Declaradas</h2>
+            <!-- Añadir botones para filtrar las variables -->
+            <div id="filter" class="mb-4 flex space-x-4 opacity-0 transition-opacity duration-500">
+                <button data-filter="" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded">Todos los tipos</button>
+                <button data-filter="entero" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Entero</button>
+                <button data-filter="real" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Real</button>
+                <button data-filter="cadena" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Cadena</button>
+                <button data-filter="logico" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Lógico</button>
+                <button data-filter="fecha" class="btn btn-primary px-4 py-2 bg-white text-blue-500 border border-blue-500 rounded">Fecha</button>
+            </div>
+            <!-- Fin de los botones -->
             <ul id="variables" class="overflow-auto transition-all duration-100 ease-in-out"></ul>
         </div>
     </div>
+
+<script src="./script.js"></script>
+
 </body>
 
-</html>
+</html> 

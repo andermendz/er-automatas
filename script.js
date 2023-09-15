@@ -34,13 +34,6 @@ document.getElementById("validate").addEventListener("click", function () {
   variables.innerHTML = "";
 
   // Definir la expresión regular para validar las líneas
-  // '^declare\s+' busca líneas que comiencen con "declare" seguido de uno o más espacios.
-  // '\s+' representa uno o más espacios en blanco.
-  // '([a-zA-Z_][a-zA-Z0-9_]{0,14}' define una variable que debe comenzar con una letra o un guion bajo, seguido de hasta 14 letras, números o guiones bajos.
-  // '(,\s*[a-zA-Z_][a-zA-Z0-9_]{0,14})*\s+' permite múltiples variables en la declaración. El patrón puede repetirse cero o más veces, lo que permite una cantidad ilimitada de variables.
-  // '*' significa "cero o más".
-  // '(entero|real|cadena|logico|fecha)' busca uno de los tipos de datos permitidos: entero, real, cadena, logico o fecha.
-  // ';$' asegura que la línea termine con un punto y coma.
   var regex =
     /^declare\s+([a-zA-Z_][a-zA-Z0-9_]{0,14}(,\s*[a-zA-Z_][a-zA-Z0-9_]{0,14})*\s+)(entero|real|cadena|logico|fecha);$/;
 
@@ -107,6 +100,7 @@ document.getElementById("validate").addEventListener("click", function () {
             "bg-blue-200"
           );
           liVar.textContent = v.trim() + ": " + type;
+          liVar.dataset.type = type; // Añadir el tipo de dato como un atributo de datos
           variables.appendChild(liVar);
           setTimeout(function () {
             liVar.style.opacity = 1;
@@ -129,5 +123,46 @@ document.getElementById("validate").addEventListener("click", function () {
     setTimeout(function () {
       li.style.opacity = 1;
     }, 300); // Añade transición de opacidad
+
+    // Mostrar los botones del filtro después de que se inserte el input
+    document.getElementById("filter").style.opacity = 1;
+  });
+});
+
+// Añadir un evento de clic a los botones del filtro
+document.querySelectorAll("#filter button").forEach(function (button) {
+  button.addEventListener("click", function () {
+    var filter = this.dataset.filter;
+
+    // Cambiar el color del botón seleccionado y restablecer los demás botones a su color original
+    document.querySelectorAll("#filter button").forEach(function (btn) {
+      btn.classList.remove("bg-blue-500", "text-white");
+      btn.classList.add("bg-white", "text-blue-500", "border", "border-blue-500");
+    });
+    
+    this.classList.remove("bg-white", "text-blue-500", "border", "border-blue-500");
+    this.classList.add("bg-blue-500", "text-white");
+
+    // Obtener todas las variables declaradas
+    var vars = document.querySelectorAll("#variables .list-group-item");
+
+    // Para cada variable declarada
+    vars.forEach(function (v) {
+      v.style.opacity = 0; 
+      
+      setTimeout(function () { 
+        // Si el filtro está vacío o coincide con el tipo de dato, mostrar la variable
+        if (!filter || v.dataset.type === filter) {
+          v.style.display = "";
+        } else {
+          // De lo contrario, ocultar la variable
+          v.style.display = "none";
+        }
+      }, 300); // Añade transición de opacidad
+
+      setTimeout(function () {
+        v.style.opacity = 1;
+      }, 600); // Añade transición de opacidad
+    });
   });
 });
