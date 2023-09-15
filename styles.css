@@ -14,6 +14,8 @@
 .container {
   position: relative;
   margin-top: 5rem;
+  transition: all 0.5s ease-in-out; 
+  margin-bottom: 5rem;
 }
 
 @keyframes gradient {
@@ -30,38 +32,46 @@
 
 .line-numbers {
   display: flex;
-
+  
   border-radius: 5px;
-  overflow: hidden;
+  
+   /* Add this line */
+   overflow-x: auto; 
 }
 
 .line-numbers .lines {
-  padding: 10px;
-  counter-reset: line;
-  user-select: none;
+   padding: 10px;
+   counter-reset: line;
+   user-select: none;
 
-  line-height: 1.5rem;
- 
-  background-color: #ffffff;
-  color: #8d8d8d;
+   line-height: 1.5rem;
 
-  font-family: 'Courier New', monospace;
+   background-color: #ffffff;
+   color: #8d8d8d;
+
+   font-family: 'Courier New', monospace;
+
+   white-space: nowrap;
+   overflow-x: auto;
 }
 
 .line-numbers .lines div::before {
-  counter-increment: line;
-  content: counter(line);
-  display: block;
-  text-align: right;
+   counter-increment: line;
+   content: counter(line);
+   display: block;
+   text-align: right;
 }
 
 textarea {
-  overflow: hidden;
-  resize: none;
-  line-height: 1.5rem;
-  font-family: 'Courier New', monospace;
-  padding: 10px;
-  border-radius: 0;
+  
+   overflow: hidden;
+   resize: none;
+   line-height: 1.5rem;
+   font-family: 'Courier New', monospace;
+   padding: 10px;
+   border-radius: 0;
+   white-space: nowrap;
+   overflow-x: auto;
 }
 
 /* Añade transiciones a los elementos de la lista */
@@ -85,4 +95,7 @@ textarea {
  .flex {
      flex-direction: row; 
  }
+}
+textarea {
+  font-size: 14px;
 }

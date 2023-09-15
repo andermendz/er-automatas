@@ -1,12 +1,3 @@
-// Sintarix
-const codeElement = document.getElementById('code');
-codeElement.addEventListener('input', () => {
-    const code = codeElement.value;
-    const highlightedCode = Prism.highlight(code, Prism.languages.javascript, 'javascript');
-    codeElement.innerHTML = highlightedCode;
-});
-
-
 
 // Obtener el área de texto y el div de las líneas
 var code = document.getElementById("code");
