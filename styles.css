@@ -4,18 +4,20 @@
 
 .gradient-background {
   position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
+  top: 50%;
+  left: 50%;
+  width: 110%;
+  height: 110%;
   background: linear-gradient(120deg, #ffffff 0%, #5c82ff 100%);
   background-size: 200% 200%;
   animation: gradient 8s ease infinite;
   filter: blur(20px);
   z-index: -1;
+  transform: translate(-50%, -50%);
 }
+
 .title{
-  margin-top: 5rem;
+  margin-top: 4rem;
   color: black;
   font-family: 'Roboto Mono', monospace;
 
