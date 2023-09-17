@@ -1,7 +1,22 @@
+// Transicion de titulo
+
+const title = document.querySelector('.title');
+title.innerHTML = title.textContent.split('').map(letter => `<span>${letter}</span>`).join('');
+
+const letters = document.querySelectorAll('.title span');
+letters.forEach((letter, index) => {
+    setTimeout(() => {
+        letter.style.opacity = '1';
+    }, 100 * index);
+});
+
+
+
 
 // Obtener el área de texto y el div de las líneas
 var code = document.getElementById("code");
 var lines = document.querySelector(".lines");
+var subContainer = document.querySelector(".sub-container");
 
 // Añadir un evento de entrada al área de texto
 code.addEventListener("input", function () {
@@ -16,7 +31,16 @@ code.addEventListener("input", function () {
   // Ajustar la altura del área de texto para adaptarse al contenido
   this.style.height = "auto";
   this.style.height = this.scrollHeight + "px";
+
+  // Si el área de texto está vacía, hacer que el subcontenedor desaparezca suavemente
+  if (this.value.trim() === "") {
+    subContainer.style.opacity = "0";
+    setTimeout(function () {
+      subContainer.style.display = "none";
+    }, 500);
+  }
 });
+
 
 // Añadir un evento de clic al botón de validar
 document.getElementById("validate").addEventListener("click", function () {
@@ -132,6 +156,13 @@ document.getElementById("validate").addEventListener("click", function () {
     // Mostrar los botones del filtro después de que se inserte el input
     document.getElementById("filter").style.opacity = "1";
   });
+
+  // Mostrar el subcontenedor con una transición suave
+  subContainer.style.opacity = "0";
+  subContainer.style.display = "block";
+  setTimeout(function () {
+    subContainer.style.opacity = "1";
+  }, 100);
 });
 
 // Añadir un evento de clic a los botones del filtro
