@@ -1,3 +1,15 @@
+const title = document.querySelector('.title');
+title.innerHTML = title.textContent.split('').map(letter => `<span>${letter}</span>`).join('');
+
+const letters = document.querySelectorAll('.title span');
+letters.forEach((letter, index) => {
+    setTimeout(() => {
+        letter.style.opacity = '1';
+    }, 50 * index);
+});
+
+
+
 // Cuando se abre el modal
 document.getElementById("showModal").addEventListener("click", function () {
   var names = ["Anderson Mendoza", "Daniel Ortiz", "Luis Cantillo", "Carlos Barrera", "Juan Ojeda"];
