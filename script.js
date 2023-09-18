@@ -1,4 +1,4 @@
-// Modal
+// Cuando se abre el modal
 document.getElementById("showModal").addEventListener("click", function () {
   var names = ["Anderson Mendoza", "Daniel Ortiz", "Luis Cantillo", "Carlos Barrera", "Juan Ojeda"];
   var namesList = document.getElementById("names");
@@ -10,29 +10,23 @@ document.getElementById("showModal").addEventListener("click", function () {
   });
   var modal = document.getElementById("modal");
   modal.style.display = "flex";
+  modal.style.zIndex = "1000"; // Asegúrate de que el modal esté por encima del subcontenedor
   setTimeout(function () {
       modal.classList.add("show");
   }, 20);
+
+  // Asegúrate de que el subcontenedor esté debajo del modal
+  var subContainer = document.querySelector(".sub-container");
+  subContainer.style.zIndex = "500";
 });
 
+// Cuando se cierra el modal
 document.getElementById("closeModal").addEventListener("click", function () {
   var modal = document.getElementById("modal");
   modal.classList.remove("show");
   setTimeout(function () {
       modal.style.display = "none";
   }, 500);
-});
-
-// Transicion de titulo
-
-const title = document.querySelector('.title');
-title.innerHTML = title.textContent.split('').map(letter => `<span>${letter}</span>`).join('');
-
-const letters = document.querySelectorAll('.title span');
-letters.forEach((letter, index) => {
-    setTimeout(() => {
-        letter.style.opacity = '1';
-    }, 100 * index);
 });
 
 
