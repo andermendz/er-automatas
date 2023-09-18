@@ -1,3 +1,28 @@
+// Modal
+document.getElementById("showModal").addEventListener("click", function () {
+  var names = ["Anderson Mendoza", "Daniel Ortiz", "Luis Cantillo", "Carlos Barrera", "Juan Ojeda"];
+  var namesList = document.getElementById("names");
+  namesList.innerHTML = "";
+  names.forEach(function (name) {
+      var li = document.createElement("li");
+      li.textContent = name;
+      namesList.appendChild(li);
+  });
+  var modal = document.getElementById("modal");
+  modal.style.display = "flex";
+  setTimeout(function () {
+      modal.classList.add("show");
+  }, 20);
+});
+
+document.getElementById("closeModal").addEventListener("click", function () {
+  var modal = document.getElementById("modal");
+  modal.classList.remove("show");
+  setTimeout(function () {
+      modal.style.display = "none";
+  }, 500);
+});
+
 // Transicion de titulo
 
 const title = document.querySelector('.title');

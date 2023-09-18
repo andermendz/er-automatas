@@ -22,8 +22,23 @@
         <button id="validate" class="btn btn-primary px-4 py-2 bg-blue-500 text-white rounded block m-auto">
             Validar
         </button>
+        <button id="showModal" class="btn btn-primary px-4 py-2 bg-gray-100 text-black rounded block m-auto mt-5">
+            Mostrar Integrantes
+        </button>
     </div>
 
+    <div id="modal" class="fixed top-0 left-0 w-full h-full flex items-center justify-center backdrop-blur" style="background-color: rgba(0,0,0,0.5); display: none;">
+        <div class="bg-white rounded-lg w-1/2">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <p class="text-lg font-semibold">Nombres de los Integrantes</p>
+                <button id="closeModal" class="p-2 hover:bg-gray-200 rounded-full">
+                    ×
+                </button>
+            </div>
+            <div id="names" class="p-6"></div>
+        </div>
+    </div>
+    
     <div class="container mx-auto bg-white rounded-3xl p-4 max-w-lg m-auto mt-5 sub-container">
         <div class="flex flex-col md:flex-row mt-4">
             <div class="mb-2 md:w-1/2 pr-2">

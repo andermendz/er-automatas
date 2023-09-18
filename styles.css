@@ -1,6 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Reem+Kufi+Fun:wght@500&family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 
+#modal {
+  backdrop-filter: blur(100px);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out, all 0.5s ease-in-out;
+
+}
+
+#names li {
+  border-radius: 12px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f3f3f3;
+}
+
+
+#modal.show {
+  opacity: 1;
+}
+
 
 .gradient-background {
   position: fixed;
